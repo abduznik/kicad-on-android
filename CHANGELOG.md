@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5 - installer robustness
+- Full `pkg upgrade` before installing; repairs a broken `proot-distro` (python interpreter mismatch).
+- Releases are built and signed by CI from repository secrets.
+
 ## 0.4 - launcher APK, shebang-proof launch (first public release)
 - APK runs `exec bash <prefix>/bin/kicad-start`, never relying on the script's first line.
 - Installer writes an absolute `#!$PREFIX/bin/bash` shebang into every command it installs.
