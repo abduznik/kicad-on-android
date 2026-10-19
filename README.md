@@ -71,6 +71,11 @@ export ANDROID_HOME=$HOME/Android/Sdk      # your SDK location
 (created on first run), and prints the signature.
 Variables: `BUILD_TOOLS`, `JAVA_HOME`, `KEYSTORE`, `VERSION_CODE`, `VERSION_NAME`.
 
+Releases are built and signed by GitHub Actions (`.github/workflows/release.yml`) from the repository
+secrets `KEYSTORE_BASE64`, `KEYSTORE_PASSWORD`, `KEY_PASSWORD` and `KEY_ALIAS`; pushing a `v*` tag publishes a
+release. To use your own key in a fork, create a keystore with `keytool`, base64 it
+(`base64 -w0 my.keystore`) and set those four secrets with `gh secret set`.
+
 Signing note: Android only updates an installed app when the new APK has the same signing key.
 Release APKs are signed with the maintainer's key; an APK you build is signed with yours, so uninstall
 the released one first (or keep one key for all your builds).

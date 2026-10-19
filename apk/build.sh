@@ -2,7 +2,7 @@
 # Builds build/KiCadLauncher.apk with the plain Android SDK tools (no Gradle, no downloads).
 # Needs: Android SDK (platform android-34, build-tools 34.0.0), JDK 17+, zip.
 # Signing: uses apk/debug.keystore (created on first build). Updating an installed APK requires the same key,
-# so keep your keystore; set KEYSTORE=/path to use another one.
+# so keep your keystore; set KEYSTORE=/path (plus KEYSTORE_PASSWORD, KEY_PASSWORD, KEY_ALIAS) to use another one.
 set -euo pipefail
 cd "$(dirname "$0")"
 SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-$HOME/Android/Sdk}}"
@@ -26,9 +26,10 @@ javac --release 8 -Xlint:-options -d "$OUT/classes" -classpath "$JAR" \
 "$BT/zipalign" -f -p 4 "$OUT/base.apk" "$OUT/aligned.apk"
 
 KS="${KEYSTORE:-debug.keystore}"
-[ -f "$KS" ] || keytool -genkeypair -keystore "$KS" -storepass android -keypass android -alias debug \
+KS_PASS="${KEYSTORE_PASSWORD:-android}"; KEY_PASS="${KEY_PASSWORD:-$KS_PASS}"; KEY_ALIAS="${KEY_ALIAS:-debug}"
+[ -f "$KS" ] || keytool -genkeypair -keystore "$KS" -storepass "$KS_PASS" -keypass "$KEY_PASS" -alias "$KEY_ALIAS" \
   -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=KiCad Launcher Debug" >/dev/null 2>&1
-"$BT/apksigner" sign --ks "$KS" --ks-pass pass:android --key-pass pass:android \
+"$BT/apksigner" sign --ks "$KS" --ks-pass "pass:$KS_PASS" --key-pass "pass:$KEY_PASS" --ks-key-alias "$KEY_ALIAS" \
   --out "$OUT/KiCadLauncher.apk" "$OUT/aligned.apk"
 "$BT/apksigner" verify --print-certs "$OUT/KiCadLauncher.apk" | head -2
 ls -lh "$OUT/KiCadLauncher.apk"
