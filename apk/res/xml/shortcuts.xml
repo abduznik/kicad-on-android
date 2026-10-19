@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="launch"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/sc_launch">
+        <intent
+            android:action="com.yan.kicadbox.LAUNCH"
+            android:targetPackage="com.yan.kicadbox"
+            android:targetClass="com.yan.kicadbox.MainActivity" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="stop"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/sc_stop">
+        <intent
+            android:action="com.yan.kicadbox.STOP"
+            android:targetPackage="com.yan.kicadbox"
+            android:targetClass="com.yan.kicadbox.MainActivity" />
+    </shortcut>
+</shortcuts>

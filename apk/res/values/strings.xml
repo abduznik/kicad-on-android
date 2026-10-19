@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">KiCad Launcher</string>
+    <string name="sc_launch">Launch KiCad</string>
+    <string name="sc_stop">Stop KiCad</string>
+</resources>

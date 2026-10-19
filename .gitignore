@@ -1,0 +1,5 @@
+apk/build/
+apk/assets/
+apk/*.keystore
+*.keystore
+*.jks

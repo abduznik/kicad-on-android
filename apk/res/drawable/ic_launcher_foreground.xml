@@ -1,0 +1,21 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <!-- traces -->
+    <path android:strokeColor="#2EC4A0" android:strokeWidth="3" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:pathData="M54,40 V32 H74" />
+    <path android:strokeColor="#2EC4A0" android:strokeWidth="3" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:pathData="M68,54 H76 V68" />
+    <path android:strokeColor="#2EC4A0" android:strokeWidth="3" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:pathData="M54,68 V76 H34" />
+    <path android:strokeColor="#2EC4A0" android:strokeWidth="3" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:pathData="M40,54 H32 V40" />
+    <!-- vias -->
+    <path android:fillColor="#2EC4A0" android:pathData="M70.5,32 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0" />
+    <path android:fillColor="#2EC4A0" android:pathData="M72.5,68 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0" />
+    <path android:fillColor="#2EC4A0" android:pathData="M30.5,76 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0" />
+    <path android:fillColor="#2EC4A0" android:pathData="M28.5,40 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0" />
+    <!-- chip -->
+    <path android:fillColor="#E8F7F2" android:pathData="M40,40 H68 V68 H40 Z" />
+    <path android:fillColor="#0E2A24" android:pathData="M45,45 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+</vector>

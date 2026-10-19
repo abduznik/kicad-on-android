@@ -1,0 +1,27 @@
+name: ci
+on:
+  push:
+  pull_request:
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Installer simulation (stubbed Termux)
+        run: bash test/sim.sh
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Build APK
+        run: |
+          sdkmanager --install "platforms;android-34" "build-tools;34.0.0" >/dev/null
+          ./apk/build.sh
+      - uses: actions/upload-artifact@v4
+        with:
+          name: KiCadLauncher-debug-signed
+          path: apk/build/KiCadLauncher.apk
