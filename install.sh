@@ -60,11 +60,19 @@ install_termux_packages() {
   step "Installing Termux packages (X11, proot-distro)"
   export DEBIAN_FRONTEND=noninteractive
   pkg update -y
+  # Termux does not support partial upgrades: stale libraries/interpreters (e.g. python for proot-distro) break tools.
+  pkg upgrade -y -o Dpkg::Options::=--force-confold
   pkg install -y x11-repo
   pkg update -y
   local pkgs=(termux-x11-nightly proot-distro)
   [ "$GPU" = virgl ] && pkgs+=(virglrenderer-android)
   pkg install -y "${pkgs[@]}"
+  # proot-distro is a Python script; repair it if its interpreter is missing or mismatched.
+  if ! proot-distro list >/dev/null 2>&1; then
+    warn "proot-distro does not run; reinstalling python and proot-distro"
+    pkg reinstall -y python proot-distro
+    proot-distro list >/dev/null 2>&1 || die "proot-distro is still broken. Run: pkg upgrade -y && pkg reinstall -y python proot-distro"
+  fi
   ok "termux packages installed"
 }
 

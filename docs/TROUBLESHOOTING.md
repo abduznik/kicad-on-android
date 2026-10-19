@@ -22,3 +22,6 @@ written to `~/.cache/kicad-termux/last.log`. Use `kicad-start --verbose` to see 
 **No storage folder.** Run `termux-setup-storage`, allow it, re-run the installer.
 
 **Not enough space.** About 6 GB (10 GB with 3D models). `KICAD_FORCE=1` skips the check.
+
+**`proot-distro: ... python3.x: bad interpreter`.** Termux was partially upgraded. Run
+`pkg upgrade -y` then `pkg reinstall -y python proot-distro`, and re-run `install.sh` (v0.5+ does this itself).

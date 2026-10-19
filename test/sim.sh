@@ -78,6 +78,7 @@ chk "openbox maximize rule" "grep -q '<maximized>yes' '$GUEST/root/.config/openb
 chk "plugins symlink" "[ -L '$GUEST/root/.local/share/kicad/9.0/scripting/plugins' ]"
 chk "ipc plugins symlink" "[ -L '$GUEST/root/.local/share/kicad/9.0/plugins' ]"
 chk "Documents/KiCad symlink" "[ -L '$GUEST/root/Documents/KiCad' ]"
+chk "full upgrade before installs" "grep -n '^pkg upgrade' '$LOG' | head -1 | grep -q upgrade"
 chk "x11-repo before x11 pkgs" "grep -n 'x11-repo' '$LOG' | head -1 | grep -q pkg"
 chk "apt installs kicad" "grep -q 'apt-get install.*kicad' '$LOG'"
 chk "idempotent re-run" "bash '$HERE/install.sh' >'$T/again.out' 2>&1"
