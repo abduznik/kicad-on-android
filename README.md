@@ -4,8 +4,7 @@ Run the full desktop **KiCad** on an Android phone or tablet. A one-shot install
 Termux + Termux:X11 + a Debian guest with KiCad, and a small launcher APK gives you a real app icon,
 one-tap install, launch and stop.
 
-> Status: the installer is verified on a real device (KiCad starts and runs). The launcher APK's
-> hand-off to Termux is still being verified; see [Troubleshooting](docs/TROUBLESHOOTING.md).
+> Status: installer, launcher APK (install, launch, stop) and the Termux hand-off are verified working on a real device.
 > This is the real desktop UI, not a touch-first redesign yet (see [Roadmap](docs/ROADMAP.md)).
 
 ## What you get
