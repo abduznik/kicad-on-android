@@ -29,7 +29,10 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
         run: |
-          sdkmanager --install "platforms;android-34" "build-tools;34.0.0" >/dev/null
+          SM="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          [ -x "$SM" ] || SM="$(ls "$ANDROID_HOME"/cmdline-tools/*/bin/sdkmanager | head -1)"
+          yes | "$SM" --licenses >/dev/null || true
+          "$SM" --install "platforms;android-34" "build-tools;34.0.0" >/dev/null
           if [ "${GITHUB_REF_TYPE}" = tag ]; then
             VERSION_NAME="${GITHUB_REF_NAME#v}"
             VERSION_CODE="$(git rev-list --count HEAD)"
